@@ -9,6 +9,7 @@ form.addEventListener("submit", (e) => {
 
   const todo = {
     text: input.value,
+    checked: false,
     id: new Date().getTime(),
   };
 
@@ -40,6 +41,17 @@ const displayTodos = () => {
     delButton.addEventListener("click", () => {
       todos = todos.filter((t) => t.id !== todo.id);
       displayTodos();
+    });
+
+    inputEl.addEventListener("change", (e) => {
+      todo.checked = e.target.checked;
+      console.log(e.target);
+
+      if (todo.checked) {
+        taskEl.classList.add("done");
+      } else {
+        taskEl.classList.remove("done");
+      }
     });
 
     taskEl.appendChild(inputEl);
